@@ -2,14 +2,14 @@
 import { store } from './store';
 
 import PageHeader from './components/PageHeader.vue';
-import Film from './components/Film.vue';
+import AppMain from './components/AppMain.vue';
 
 import axios from 'axios';
 
 export default {
   components: {
     PageHeader,
-    Film
+    AppMain,
   },
   data() {
     return {
@@ -22,15 +22,25 @@ export default {
   }, methods: {
     readInputValue(searchValue) {
 
-      this.completeUrl = this.store.apiUrl + '?api_key=' + this.store.apiKey + '&query=' + searchValue + '&language=it-IT'
+      // METODO BRUTTO
+      this.completeMovieUrl = this.store.apiMovieUrl + '?api_key=' + this.store.apiKey + '&query=' + searchValue + '&language=it-IT'
 
-      searchValue = '';
-
-      console.log(this.completeUrl)
-
-      axios.get(this.completeUrl)
+      axios.get(this.completeMovieUrl)
         .then(res => {
-          this.store.films = res.data.results
+          this.store.movies = res.data.results
+        })
+
+
+      // METODO BELLO
+      axios.get(this.store.apiSerieUrl, {
+        params: {
+          api_key: this.store.apiKey,
+          query: searchValue,
+          language: 'it-IT'
+        }
+      })
+        .then(res => {
+          this.store.series = res.data.results
         })
     }
   }
@@ -40,9 +50,7 @@ export default {
 <template>
   <PageHeader @search="readInputValue" />
   <main>
-    <div class="card" v-for="(film, index) in this.store.films" :key="index">
-      <Film :film="film" />
-    </div>
+    <AppMain />
   </main>
 </template>
 
