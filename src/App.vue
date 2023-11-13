@@ -57,3 +57,9 @@ export default {
 <style lang="scss">
 @use './styles/general.scss'
 </style>
+
+<style scoped>
+* {
+  font-family: 'Urbanist', sans-serif;
+}
+</style>

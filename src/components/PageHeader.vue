@@ -12,7 +12,7 @@ export default {
     <header class="page-header debu">
         <div class="container">
             <div class="logo">
-                <h1>Boolflix</h1>
+                <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="logo">
             </div>
             <div class="searchbar">
                 <input type="text" placeholder="Cerca un film o una serie" v-model.trim="searchValue"
@@ -28,6 +28,7 @@ export default {
 <style scoped lang="scss">
 .page-header {
     background-color: black;
+    padding: 10px 0;
 }
 
 .container {
@@ -38,12 +39,32 @@ export default {
     padding: 14px;
 }
 
-.logo {
-    color: red;
+.logo img {
+    height: 50px;
 }
 
 .searchbar {
     display: flex;
     gap: 5px;
+
+    input {
+        color: white;
+        font-size: 18px;
+        border-bottom: 1px solid white;
+        padding: 2px 5px;
+    }
+
+    button {
+        color: white;
+        font-size: 18px;
+        border: 1px solid white;
+        padding: 5px 10px;
+        border-radius: 15px;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
 }
 </style>

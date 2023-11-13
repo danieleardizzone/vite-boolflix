@@ -30,25 +30,25 @@ export default {
 <template>
     <img class="card__poster" v-if="item.poster_path !== null" :src="imgSrc" alt="item poster">
     <div class="card__content" :class="item.poster_path !== null ? 'd-none' : ''">
-        <p>
-            <strong>Titolo: </strong>
-            <span v-if="item.title">
+        <div>
+            <p class="bold">Titolo: </p>
+            <p v-if="item.title">
                 {{ item.title }}
-            </span>
-            <span v-else>
+            </p>
+            <p v-else>
                 {{ item.name }}
-            </span>
-        </p>
+            </p>
+        </div>
 
-        <p>
-            <strong>Titolo originale: </strong>
-            <span v-if="item.title">
+        <div>
+            <p class="bold">Titolo originale: </p>
+            <p v-if="item.title">
                 {{ item.original_title }}
-            </span>
-            <span v-else>
+            </p>
+            <p v-else>
                 {{ item.original_name }}
-            </span>
-        </p>
+            </p>
+        </div>
         <div class="flag">
             <strong>Lingua originale: </strong>
             <img v-if="srcFlag" :src="srcFlag" alt="flag">
@@ -61,12 +61,12 @@ export default {
             <font-awesome-icon v-for="star in Math.round(vote_stars)" icon="fa-solid fa-star" />
             <strong>{{ vote_stars }}</strong>
         </div>
-        <p v-if="item.overview">
+        <!-- <p v-if="item.overview">
             <strong>Overview: </strong>
             <span>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, porro!
             </span>
-        </p>
+        </p> -->
     </div>
 </template>
 
@@ -94,5 +94,12 @@ export default {
     flex-grow: 1;
 
     padding: 10px;
+
+    font-weight: 300;
+}
+
+.bold,
+strong {
+    font-weight: 700;
 }
 </style>
