@@ -15,8 +15,11 @@ export default {
                 <h1>Boolflix</h1>
             </div>
             <div class="searchbar">
-                <input type="text" placeholder="Cerca un film o una serie" v-model.trim="searchValue">
-                <button @click="$emit('search', searchValue)">Cerca</button>
+                <input type="text" placeholder="Cerca un film o una serie" v-model.trim="searchValue"
+                    @keyup.enter="$emit('search', searchValue)">
+                <button @click="$emit('search', searchValue)">
+                    Cerca
+                </button>
             </div>
         </div>
     </header>

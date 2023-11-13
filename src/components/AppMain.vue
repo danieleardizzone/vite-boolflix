@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="scss">
 .card {
-    background-color: white;
-    padding: 20px;
+    display: flex;
+    border: 1px solid white;
 }
 </style>

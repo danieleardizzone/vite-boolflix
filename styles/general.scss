@@ -11,12 +11,17 @@ menu {
 }
 
 img {
+    display: block;
     max-width: 100%;
 }
 
 a {
     text-decoration: none;
     color: currentColor;
+}
+
+.d-none {
+    display: none;
 }
 
 .container {
@@ -32,6 +37,14 @@ main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 30px;
+}
+
+.card:hover .card__poster {
+    display: none;
+}
+
+.card:hover .card__content {
+    display: block;
 }
 
 // DEBUG

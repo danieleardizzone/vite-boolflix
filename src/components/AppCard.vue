@@ -28,44 +28,71 @@ export default {
 </script>
 
 <template>
-    <img v-if="item.poster_path !== null" :src="imgSrc" alt="item poster">
-    <h3 v-if="item.title">
-        {{ item.title }}
-    </h3>
-    <h3 v-else>
-        {{ item.name }}
-    </h3>
-    <p v-if="item.original_title">
-        {{ item.original_title }}
-    </p>
-    <p v-else>
-        {{ item.original_name }}
-    </p>
-    <img class="flag" v-if="srcFlag" :src="srcFlag" alt="flag">
-    <p v-else>
-        {{ item.original_language }}
-    </p>
-    <div class="stars">
-        <font-awesome-icon v-for="star in Math.round(vote_stars)" icon="fa-solid fa-star" />
+    <img class="card__poster" v-if="item.poster_path !== null" :src="imgSrc" alt="item poster">
+    <div class="card__content" :class="item.poster_path !== null ? 'd-none' : ''">
         <p>
-            {{ vote_stars }}
+            <strong>Titolo: </strong>
+            <span v-if="item.title">
+                {{ item.title }}
+            </span>
+            <span v-else>
+                {{ item.name }}
+            </span>
+        </p>
+
+        <p>
+            <strong>Titolo originale: </strong>
+            <span v-if="item.title">
+                {{ item.original_title }}
+            </span>
+            <span v-else>
+                {{ item.original_name }}
+            </span>
+        </p>
+        <div class="flag">
+            <strong>Lingua originale: </strong>
+            <img v-if="srcFlag" :src="srcFlag" alt="flag">
+            <p v-else>
+                {{ item.original_language }}
+            </p>
+        </div>
+        <div class="stars">
+            <strong>Voto: </strong>
+            <font-awesome-icon v-for="star in Math.round(vote_stars)" icon="fa-solid fa-star" />
+            <strong>{{ vote_stars }}</strong>
+        </div>
+        <p v-if="item.overview">
+            <strong>Overview: </strong>
+            <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, porro!
+            </span>
         </p>
     </div>
 </template>
 
 <style scoped lang="scss">
 .flag {
-    height: 30px;
-    aspect-ratio: 1;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+
+    img {
+        height: 30px;
+        aspect-ratio: 1;
+    }
 }
 
 .stars {
     display: flex;
     gap: 3.5px;
     color: yellow;
+}
 
-    p {
-        color: black;
-    }
+.card__content {
+    color: white;
+    background-color: black;
+    flex-grow: 1;
+
+    padding: 10px;
 }
 </style>
