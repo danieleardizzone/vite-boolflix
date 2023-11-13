@@ -16,18 +16,22 @@ export default {
     computed: {
         srcFlag() {
             return this.store.flags[this.item.original_language]
+        },
+        imgSrc() {
+            return this.store.apiImgUrl + this.item.poster_path
         }
     }
 }
 </script>
 
 <template>
-    <div v-if="!item.title">
+    <div v-if="item.title">
+        <img v-if="item.poster_path !== null" :src="imgSrc" alt="item poster">
         <h3>
-            {{ item.name }}
+            {{ item.title }}
         </h3>
         <p>
-            {{ item.original_name }}
+            {{ item.original_title }}
         </p>
         <img class="flag" v-if="srcFlag" :src="srcFlag" alt="flag">
         <p v-else>
@@ -38,11 +42,12 @@ export default {
         </p>
     </div>
     <div v-else>
+        <img v-if="item.poster_path !== null" :src="imgSrc" alt="item poster">
         <h3>
-            {{ item.title }}
+            {{ item.name }}
         </h3>
         <p>
-            {{ item.original_title }}
+            {{ item.original_name }}
         </p>
         <img class="flag" v-if="srcFlag" :src="srcFlag" alt="flag">
         <p v-else>
