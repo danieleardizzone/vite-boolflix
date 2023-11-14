@@ -45,7 +45,7 @@ export default {
 
 .searchbar {
     display: flex;
-    gap: 5px;
+    gap: 15px;
 
     input {
         color: white;

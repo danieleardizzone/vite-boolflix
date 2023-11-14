@@ -57,9 +57,12 @@ export default {
             </p>
         </div>
         <div class="stars">
-            <strong>Voto: </strong>
-            <font-awesome-icon v-for="star in Math.round(vote_stars)" icon="fa-solid fa-star" />
-            <strong>{{ vote_stars }}</strong>
+            <strong>Voto: </strong><span>{{ vote_stars }}</span>
+        </div>
+        <div class="stars">
+            <font-awesome-icon v-for="star in Math.floor(vote_stars)" icon="fa-solid fa-star" />
+            <font-awesome-icon v-if="(vote_stars - 0.5) === Math.floor(vote_stars)" icon="fa-regular fa-star-half-stroke" />
+            <font-awesome-icon v-for="star in Math.floor(5 - vote_stars)" icon="fa-regular fa-star" />
         </div>
         <!-- <p v-if="item.overview">
             <strong>Overview: </strong>
